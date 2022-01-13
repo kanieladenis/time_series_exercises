@@ -47,9 +47,9 @@ def csv_files():
     import os
     if (os.path.isfile('items.csv') == False) or (os.path.isfile('sales.csv')==False) or (os.path.isfile('stores.csv')==False):
         items, stores, sales = stores_sales()
-        items.to_csv('items.csv')
-        stores.to_csv('stores.csv')
-        sales.to_csv('sales.csv')
+        items.to_csv('items.csv', index=False)
+        stores.to_csv('stores.csv', index=False)
+        sales.to_csv('sales.csv', index=False)
     else:
         items = pd.read_csv('items.csv')
         stores = pd.read_csv('stores.csv')
@@ -83,6 +83,6 @@ def sales_merged():
     
     sales_merged = pd.merge(stores_sales, items, how='left', left_on='item', right_on='item_id')
     
-    return items, stores, sales, sales_merged
+    return sales_merged
     
     
